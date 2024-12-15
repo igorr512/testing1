@@ -1,0 +1,36 @@
+pipeline {
+    agent {
+        node{
+            label 'agent-python'
+        }
+    }
+    triggers {
+        pollSCM '*/5 * * * *'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Hello World'
+                sh '''
+                echo "doing stuff"
+                '''
+            }
+        }
+        stage('Test'){
+            steps{
+                echo "testing"
+                sh '''
+                echo "testing stuff"
+                '''
+            }
+        }
+        stage('Deliver'){
+            steps{
+                echo 'deliver...'
+                sh '''
+                echo "doing delivery"
+                '''
+            }
+        }
+    }
+}
